@@ -10,8 +10,16 @@ ENDPOINT = 'https://api.github.com/repos/sburns/deployment-api-toy/deployments'
 
 @task
 def deploy(task='deploy', env='production', desc='my deploy'):
-    create_deployment(rev_parse(), task=task, environment=env, description=desc)
-    # And now you might actually deploy something
+    r = create_deployment(rev_parse(), task=task, environment=env, description=desc)
+    response = r.json()
+    status_url = response['statuses_url']
+
+    deploy_state = actually_deploy()
+
+    create_status(status_url, 'success')
+
+def actually_deploy():
+    return 'success'
 
 
 def create_deployment(ref, task='deploy', auto_merge=True, payload=None,
@@ -27,6 +35,10 @@ def create_deployment(ref, task='deploy', auto_merge=True, payload=None,
     session = prepare_session()
     return session.post(ENDPOINT, json=data)
 
+
+def create_status(url, state):
+    session = prepare_session()
+    return session.post(url, json={'state': state})
 
 def get_token():
     oauth_token = os.environ.get('GITHUB_DEPLOYMENT_API_TOKEN', None)
@@ -46,5 +58,5 @@ def prepare_session():
 
 
 def rev_parse(ref='HEAD'):
-    return run('git rev-parse {}'.format(ref)).stdout.strip()
+    return run('git rev-parse {}'.format(ref), hide='out').stdout.strip()
 
