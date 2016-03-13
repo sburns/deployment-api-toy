@@ -19,5 +19,11 @@ $ invoke deploy
 ```
 
 This command creates a [deployment](https://developer.github.com/v3/repos/deployments/) through Github's
-API with various extra bits of information.
+API with various extra bits of information and a [status](https://developer.github.com/v3/repos/deployments/#create-a-deployment-status) on top of it.
+
+Viewing [old](http://github.com/sburns/deployment-api-toy/pull/1) [PRs](http://github.com/sburns/deployment-api-toy/pull/2), you can see that deployments are displayed in-line with commits.
+
+## Why
+
+This is a simple, easy way to add a deployment audit log to your application.
 
