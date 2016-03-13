@@ -38,7 +38,7 @@ def create_deployment(ref, task='deploy', auto_merge=True, payload=None,
 
 def create_status(url, state):
     session = prepare_session()
-    return session.post(url, json={'state': state})
+    return session.post(url, json={'state': state, 'description': state})
 
 def get_token():
     oauth_token = os.environ.get('GITHUB_DEPLOYMENT_API_TOKEN', None)
