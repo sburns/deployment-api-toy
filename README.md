@@ -12,11 +12,13 @@ Toy repo to tinker with the Github Deployment API
 
 ## What's going on here?
 
-The interesting tidbis are in `tasks.py`. Using [invoke](http://pyinvoke.org), this file provides a
-deployment command run as so:
+The interesting bits are in `tasks.py`. Using [invoke](http://pyinvoke.org), this file provides a
+deployment command to run like these examples:
 
 ```
 $ invoke deploy
+$ invoke deploy --env staging
+$ invoke deploy --task deploy:migration
 ```
 
 This command creates a [deployment](https://developer.github.com/v3/repos/deployments/) through Github's
