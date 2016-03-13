@@ -1,4 +1,5 @@
 # deployment-api-toy
+
 Toy repo to tinker with the Github Deployment API
 
 ## Setup
@@ -9,7 +10,7 @@ Toy repo to tinker with the Github Deployment API
 - Get a python virtualenv going
 - `pip install -r requirements.txt`
 
-## What's going on here
+## What's going on here?
 
 The interesting tidbis are in `tasks.py`. Using [invoke](http://pyinvoke.org), this file provides a
 deployment command run as so:
@@ -27,3 +28,4 @@ Viewing [old](http://github.com/sburns/deployment-api-toy/pull/1) [PRs](http://g
 
 This is a simple, easy way to add a deployment audit log to your application.
 
+I hope this helps someone :)
